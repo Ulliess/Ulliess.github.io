@@ -30,6 +30,7 @@
             background: #ffffff;
             line-height: 1.6;
             color: #000000;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -38,6 +39,18 @@
             background: white;
             box-shadow: 0 0 20px rgba(247, 92, 62, 0.1);
             border: 1px solid #fff0ed;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header {
@@ -57,6 +70,12 @@
             object-fit: cover;
             border: 4px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-photo:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .header-text {
@@ -101,6 +120,23 @@
             letter-spacing: 1px;
             border-left: 5px solid #F75C3E;
             padding-left: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: #F75C3E;
+            transition: width 0.5s ease;
+        }
+
+        .section:hover h2::after {
+            width: 100%;
         }
 
         .section p {
@@ -116,6 +152,31 @@
             padding: 8px 0;
             border-bottom: 1px solid #fff0ed;
             color: #000000;
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .skills li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .skills li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .skills li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .skills li:last-child {
@@ -132,6 +193,15 @@
 
         .project-item {
             margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: #fff5f2;
+            transform: translateX(10px);
+            box-shadow: -5px 0 0 #F75C3E;
         }
 
         .project-item h3 {
@@ -160,11 +230,32 @@
             color: #F75C3E;
             text-decoration: none;
             border-bottom: 1px solid #F75C3E;
+            transition: all 0.3s ease;
         }
 
         .contacts a:hover {
             color: #e54a2f;
             border-bottom-color: #e54a2f;
+        }
+
+        .contacts a:hover::after {
+            content: ' ←';
+        }
+
+        .project-item a {
+            color: #F75C3E;
+            text-decoration: none;
+            border-bottom: 1px solid #F75C3E;
+            transition: all 0.3s ease;
+        }
+
+        .project-item a:hover {
+            color: #e54a2f;
+            border-bottom-color: #e54a2f;
+        }
+
+        .project-item a:hover::after {
+            content: ' ←';
         }
 
         @media (max-width: 600px) {
@@ -215,7 +306,7 @@
                 <ul class="skills">
                     <li><strong>Языки программирования:</strong> Python, C++, GDScript, C#</li>
                     <li><strong>Веб-технологии:</strong> HTML, CSS</li>
-                    <li><strong>Инструменты:</strong> Git, GitHub</li>
+                    <li><strong>Инструменты:</strong> Git, GitHub, Unity, Godot</li>
                 </ul>
             </div>
 
