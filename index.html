@@ -80,6 +80,35 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
+        .header-photo {
+            cursor: pointer;
+        }
+
+        .photo-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .photo-overlay.active {
+            display: flex;
+        }
+
+        .photo-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(247, 92, 62, 0.5);
+        }
+
         .header-text {
             flex: 1;
         }
@@ -270,9 +299,27 @@
                 padding: 20px;
             }
 
+            .header h1 {
+                font-size: 1.8em;
+                word-wrap: break-word;
+            }
+
+            .header p {
+                font-size: 0.9em;
+                word-wrap: break-word;
+            }
+
             .header-photo {
                 width: 120px;
                 height: 120px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .section p {
+                text-align: left;
             }
             
             .content {
@@ -284,11 +331,15 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="ullies.jpg" alt="Фото" class="header-photo">
+            <img src="ullies.jpg" alt="Фото" class="header-photo" id="photoThumbnail">
             <div class="header-text">
                 <h1>Банеев Павел Алексеевич</h1>
                 <p>aka Ullies<br>Студент, Программирование и инжиниринг компьютерных игр</p>
             </div>
+        </div>
+
+        <div class="photo-overlay" id="photoOverlay">
+            <img src="ullies.jpg" alt="Фото">
         </div>
 
         <div class="content">
@@ -334,11 +385,24 @@
                 <ul class="contacts">
                     <li>Email: <a href="mailto:pasabaneev@mail.ru">pasabaneev@mail.ru</a></li>
                     <li>GitHub: <a href="https://github.com/ulliess">github.com/ulliess</a></li>
-                    <li>Telegram: <a href="https://t.me/uliess">@uliess</a></li>
+                    <li>Telegram: <a href="https://t.me/ulliess">@Ulliess</a></li>
                     <li>VK: <a href="https://vk.com/ullies">vk.com/ullies</a></li>
                 </ul>
             </div>
         </div>
     </div>
+
+    <script>
+        const photoThumbnail = document.getElementById('photoThumbnail');
+        const photoOverlay = document.getElementById('photoOverlay');
+
+        photoThumbnail.addEventListener('click', () => {
+            photoOverlay.classList.add('active');
+        });
+
+        photoOverlay.addEventListener('click', () => {
+            photoOverlay.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
