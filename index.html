@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моё Резюме</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'RishaNeo';
             src: url('./RishaNeo.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lemon';
+            src: url('./lemon.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -22,11 +26,10 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Lemon', Arial, sans-serif;
             background: #ffffff;
             line-height: 1.6;
             color: #000000;
-            font-weight: 400;
         }
 
         .container {
@@ -62,9 +65,11 @@
 
         .header h1 {
             font-family: 'RishaNeo', Arial, sans-serif;
-            font-size: 2.2em;
+            font-size: 2.8em;
             margin-bottom: 5px;
-            font-weight: normal;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .header p {
@@ -89,9 +94,13 @@
         .section h2 {
             font-family: 'RishaNeo', Arial, sans-serif;
             color: #000000;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 5px solid #F75C3E;
+            padding-left: 15px;
         }
 
         .section p {
@@ -128,8 +137,9 @@
         .project-item h3 {
             font-family: 'RishaNeo', Arial, sans-serif;
             color: #000000;
-            font-size: 1.1em;
+            font-size: 1.4em;
             margin-bottom: 5px;
+            font-weight: bold;
         }
 
         .project-item p {
