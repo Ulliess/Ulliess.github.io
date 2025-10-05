@@ -67,8 +67,8 @@
 
         .fade-in-section {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .fade-in-section.is-visible {
@@ -325,12 +325,14 @@
             border-bottom-color: #3a9fb8;
         }
 
-        body.dark-mode .theme-toggle {
-            background: #4db8d8;
-        }
+        @media (min-width: 601px) {
+            body.dark-mode .theme-toggle {
+                background: #4db8d8;
+            }
 
-        body.dark-mode .theme-toggle:hover {
-            background: #3a9fb8;
+            body.dark-mode .theme-toggle:hover {
+                background: #3a9fb8;
+            }
         }
 
         @media (max-width: 600px) {
@@ -728,8 +730,8 @@
         const fadeInSections = document.querySelectorAll('.fade-in-section');
 
         const appearOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -100px 0px"
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
         };
 
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
