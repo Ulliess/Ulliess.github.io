@@ -526,6 +526,8 @@
             .header h1 {
                 font-size: 1.8em;
                 word-wrap: break-word;
+                white-space: nowrap;
+                overflow: hidden;
             }
 
             .header p {
@@ -559,6 +561,32 @@
             .navigation a {
                 padding: 8px 12px;
                 white-space: nowrap;
+            }
+
+            /* Disable hover effects on mobile */
+            .navigation a:hover {
+                background: transparent;
+                color: #000;
+            }
+
+            body.dark-mode .navigation a:hover {
+                background: transparent;
+                color: #e0e0e0;
+            }
+
+            .section:hover h2::after {
+                width: 0 !important;
+            }
+
+            .project-item:hover {
+                background: transparent !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .header-photo:hover {
+                transform: none !important;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
             }
 
             .theme-toggle {
@@ -699,6 +727,20 @@
         // Update button on resize
         window.addEventListener('resize', updateButtonText);
 
+        // === REMOVE HOVER STATES ON MOBILE ===
+        if (window.innerWidth <= 600) {
+            // Remove active state from navigation after click
+            const navLinks = document.querySelectorAll('.navigation a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Remove focus after click to prevent sticky hover
+                    setTimeout(() => {
+                        this.blur();
+                    }, 100);
+                });
+            });
+        }
+
         // === TYPING EFFECT ===
         const text = "Банеев Павел Алексеевич";
         const typingText = document.getElementById('typingText');
@@ -706,7 +748,11 @@
 
         function typeWriter() {
             if (index < text.length) {
-                typingText.textContent += text.charAt(index);
+                typingText.innerHTML += text.charAt(index);
+                // Add non-breaking space style after typing completes
+                if (index === text.length - 1) {
+                    typingText.style.whiteSpace = 'nowrap';
+                }
                 index++;
                 setTimeout(typeWriter, 100);
             }
