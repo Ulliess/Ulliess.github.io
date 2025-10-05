@@ -62,7 +62,7 @@
             z-index: -1;
             pointer-events: none;
             opacity: 0;
-            animation: fadeIn 0.8s ease-in forwards;
+            animation: fadeIn 0.8s ease-in 0.2s forwards;
         }
 
         .fade-in-section {
@@ -333,6 +333,20 @@
             background: #3a9fb8;
         }
 
+        @media (max-width: 600px) {
+            .theme-toggle {
+                background: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            body.dark-mode .theme-toggle {
+                background: rgba(50, 50, 50, 0.9) !important;
+            }
+
+            body.dark-mode .theme-toggle:hover {
+                background: rgba(50, 50, 50, 0.9) !important;
+            }
+        }
+
         .content {
             padding: 40px;
         }
@@ -551,13 +565,13 @@
                 right: 15px;
                 font-size: 1.5em;
                 padding: 8px;
-                background: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.9) !important;
                 min-width: auto;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
 
             body.dark-mode .theme-toggle {
-                background: rgba(50, 50, 50, 0.9);
+                background: rgba(50, 50, 50, 0.9) !important;
             }
         }
     </style>
