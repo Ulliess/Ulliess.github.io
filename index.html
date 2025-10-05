@@ -61,6 +61,8 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in forwards;
         }
 
         .fade-in-section {
@@ -549,16 +551,13 @@
                 right: 15px;
                 font-size: 1.5em;
                 padding: 8px;
-                background: rgba(0, 0, 0, 0.2);
+                background: rgba(255, 255, 255, 0.9);
                 min-width: auto;
-            }
-
-            .theme-toggle::before {
-                content: attr(data-icon);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
 
             body.dark-mode .theme-toggle {
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(50, 50, 50, 0.9);
             }
         }
     </style>
@@ -650,10 +649,8 @@
                 // Mobile: show only icon
                 if (body.classList.contains('dark-mode')) {
                     themeToggle.textContent = '☀️';
-                    themeToggle.setAttribute('data-icon', '☀️');
                 } else {
                     themeToggle.textContent = '🌙';
-                    themeToggle.setAttribute('data-icon', '🌙');
                 }
             } else {
                 // Desktop: show icon + text
