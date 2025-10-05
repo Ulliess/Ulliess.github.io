@@ -348,7 +348,7 @@
 
         .section h2 {
             font-family: 'RishaNeo', Arial, sans-serif;
-            color: #000000;
+            color: #F75C3E;
             font-size: 2em;
             margin-bottom: 20px;
             font-weight: bold;
@@ -442,7 +442,7 @@
 
         .project-item h3 {
             font-family: 'RishaNeo', Arial, sans-serif;
-            color: #000000;
+            color: #F75C3E;
             font-size: 1.4em;
             margin-bottom: 5px;
             font-weight: bold;
@@ -545,10 +545,20 @@
 
             .theme-toggle {
                 position: absolute;
-                top: 10px;
-                right: 10px;
-                font-size: 0.8em;
-                padding: 8px 12px;
+                top: 15px;
+                right: 15px;
+                font-size: 1.5em;
+                padding: 8px;
+                background: rgba(0, 0, 0, 0.2);
+                min-width: auto;
+            }
+
+            .theme-toggle::before {
+                content: attr(data-icon);
+            }
+
+            body.dark-mode .theme-toggle {
+                background: rgba(255, 255, 255, 0.2);
             }
         }
     </style>
@@ -634,24 +644,47 @@
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
+        // Function to update button text based on screen size
+        function updateButtonText() {
+            if (window.innerWidth <= 600) {
+                // Mobile: show only icon
+                if (body.classList.contains('dark-mode')) {
+                    themeToggle.textContent = '☀️';
+                    themeToggle.setAttribute('data-icon', '☀️');
+                } else {
+                    themeToggle.textContent = '🌙';
+                    themeToggle.setAttribute('data-icon', '🌙');
+                }
+            } else {
+                // Desktop: show icon + text
+                if (body.classList.contains('dark-mode')) {
+                    themeToggle.textContent = '☀️ Light Mode';
+                } else {
+                    themeToggle.textContent = '🌙 Dark Mode';
+                }
+            }
+        }
+
         // Check for saved theme preference
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark') {
             body.classList.add('dark-mode');
-            themeToggle.textContent = '☀️ Light Mode';
         }
+        updateButtonText();
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             
             if (body.classList.contains('dark-mode')) {
-                themeToggle.textContent = '☀️ Light Mode';
                 localStorage.setItem('theme', 'dark');
             } else {
-                themeToggle.textContent = '🌙 Dark Mode';
                 localStorage.setItem('theme', 'light');
             }
+            updateButtonText();
         });
+
+        // Update button on resize
+        window.addEventListener('resize', updateButtonText);
 
         // === TYPING EFFECT ===
         const text = "Банеев Павел Алексеевич";
