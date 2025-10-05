@@ -131,6 +131,10 @@
             box-shadow: 0 0 50px rgba(247, 92, 62, 0.5);
         }
 
+        body.dark-mode .photo-overlay img {
+            box-shadow: 0 0 50px rgba(77, 184, 216, 0.5);
+        }
+
         .header-text {
             flex: 1;
         }
@@ -207,7 +211,7 @@
         body.dark-mode .container {
             background: #2d2d2d;
             border-color: #444;
-            box-shadow: 0 0 20px rgba(247, 92, 62, 0.3);
+            box-shadow: 0 0 20px rgba(77, 184, 216, 0.3);
         }
 
         body.dark-mode .header {
@@ -677,7 +681,17 @@
                 this.size = Math.random() * 3 + 1;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.color = 'rgba(247, 92, 62, 0.3)';
+                this.updateColor();
+            }
+
+            updateColor() {
+                if (document.body.classList.contains('dark-mode')) {
+                    this.color = 'rgba(77, 184, 216, 0.3)';
+                    this.lineColor = 'rgba(77, 184, 216, 0.1)';
+                } else {
+                    this.color = 'rgba(247, 92, 62, 0.3)';
+                    this.lineColor = 'rgba(247, 92, 62, 0.1)';
+                }
             }
 
             update() {
@@ -711,6 +725,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].updateColor();
                 particlesArray[i].update();
                 particlesArray[i].draw();
 
@@ -721,7 +736,7 @@
 
                     if (distance < 100) {
                         ctx.beginPath();
-                        ctx.strokeStyle = 'rgba(247, 92, 62, 0.1)';
+                        ctx.strokeStyle = particlesArray[i].lineColor;
                         ctx.lineWidth = 1;
                         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                         ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
