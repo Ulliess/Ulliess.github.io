@@ -176,6 +176,137 @@
             color: white;
         }
 
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #F75C3E;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Lemon', Arial, sans-serif;
+            font-size: 0.9em;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle:hover {
+            background: #e54a2f;
+            transform: scale(1.05);
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .container {
+            background: #2d2d2d;
+            border-color: #444;
+            box-shadow: 0 0 20px rgba(247, 92, 62, 0.3);
+        }
+
+        body.dark-mode .header {
+            background: #F75C3E;
+        }
+
+        body.dark-mode .navigation {
+            background: #2d2d2d;
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .navigation a {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .section {
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .section h2 {
+            color: #4db8d8;
+            border-left-color: #4db8d8;
+        }
+
+        body.dark-mode .section h2::after {
+            background: #4db8d8;
+        }
+
+        body.dark-mode .section p {
+            color: #c0c0c0;
+        }
+
+        body.dark-mode .skills li {
+            border-bottom-color: #444;
+            color: #c0c0c0;
+        }
+
+        body.dark-mode .skills strong {
+            color: #4db8d8;
+        }
+
+        body.dark-mode .project-item h3 {
+            color: #4db8d8;
+        }
+
+        body.dark-mode .project-item p {
+            color: #c0c0c0;
+        }
+
+        body.dark-mode .project-item:hover {
+            background: #3a3a3a;
+            box-shadow: -5px 0 0 #4db8d8;
+        }
+
+        body.dark-mode .project-item a {
+            color: #4db8d8;
+            border-bottom-color: #4db8d8;
+        }
+
+        body.dark-mode .project-item a:hover {
+            color: #3a9fb8;
+        }
+
+        body.dark-mode .contacts li {
+            color: #c0c0c0;
+        }
+
+        body.dark-mode .contacts a {
+            color: #4db8d8;
+            border-bottom-color: #4db8d8;
+        }
+
+        body.dark-mode .contacts a:hover {
+            color: #3a9fb8;
+            border-bottom-color: #3a9fb8;
+        }
+
+        body.dark-mode .navigation a:hover {
+            background: #4db8d8;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .section:hover h2::after {
+            background: #4db8d8;
+        }
+
+        body.dark-mode .header {
+            background: #4db8d8;
+            border-bottom-color: #3a9fb8;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #4db8d8;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #3a9fb8;
+        }
+
         .content {
             padding: 40px;
         }
@@ -382,6 +513,8 @@
 <body>
     <canvas id="particles-canvas"></canvas>
     
+    <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+    
     <div class="container">
         <div class="header">
             <img src="ullies.jpg" alt="Фото" class="header-photo" id="photoThumbnail">
@@ -436,7 +569,7 @@
                 <ul class="projects">
                     <li class="project-item">
                         <h3>Rogue-like для геймджема от ТГУ</h3>
-                        <p>Разработка roguelike игры.<br>Проект доступен на GitHub: <a href="https://github.com/Ulliess/lamp-rogue-like" style="color: #F75C3E;">github.com/Ulliess/lamp-rogue-like</a></p>
+                        <p>Разработка roguelike игры.<br>Проект доступен на GitHub: <a href="https://github.com/Ulliess/lamp-rogue-like">github.com/Ulliess/lamp-rogue-like</a></p>
                     </li>
                 </ul>
             </div>
@@ -454,6 +587,29 @@
     </div>
 
     <script>
+        // === DARK MODE TOGGLE ===
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️ Light Mode';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️ Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙 Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
         // === TYPING EFFECT ===
         const text = "Банеев Павел Алексеевич";
         const typingText = document.getElementById('typingText');
