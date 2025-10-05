@@ -513,9 +513,23 @@
         }
 
         @media (max-width: 600px) {
+            body {
+                background: white;
+            }
+
+            body.dark-mode {
+                background: #2d2d2d;
+            }
+
+            #particles-canvas {
+                display: none;
+            }
+
             .container {
                 margin: 0;
                 border-radius: 0;
+                box-shadow: none;
+                border: none;
             }
             
             .header {
